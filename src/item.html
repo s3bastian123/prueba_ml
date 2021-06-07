@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>buscar</title>
+        <link rel="stylesheet" type="text/css" href="../../css/styles.css" />
+    </head>
+    <body>
+        <header class="header-app">
+            <div class="header-app__logo">
+                <a href="/" class="header-app__logo-link">
+                </a>
+            </div>
+            <div class="header-app__search">
+                <form method="POST">
+                    <div class="header-app__search--input">
+                        <label for="search"></label>
+                        <input type="text" required="" name="search" id="inputR" placeholder="Nunca dejes de buscar">
+                    </div>
+                    <div class="header-app__search--button">
+                        <input type="submit" value="">
+                    </div>
+                </form>
+            </div>
+        </header>
+        <div class="resultado-app">
+            <div class="content-item" id="resultado-item"></div>
+            <div id="description-item" class="description-item"></div>
+        </div>
+        <script src="../../src/js/showItem.js" type="text/javascript"></script>
+    </body>
+</html>

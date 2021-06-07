@@ -1,0 +1,202 @@
+//--- Variables ---\\
+$blue-background-button: #3483fa;
+$gray-background: #eeeeee;
+$gray-border-item: #f7f7f7;
+$gray-text-color: #333333;
+$gray-description-color: #999999;
+$white-color-button: #ffffff;
+$white-background-items: #ffffff;
+$yellow-ml-background: #ffe600;
+
+//--- root ---\\
+body, div, a, span, p, label, input {
+    margin: 0;
+    padding: 0;
+    border: none;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+//header
+.header-app{
+    background:$yellow-ml-background;
+    padding: 9px 150px;
+    display: flex;
+    flex-direction: row;
+    &__logo{
+        width: 57px;
+        height: 36px;
+        background-image: url('../img/Logo_ML.png');
+        margin-right: 27px;
+        a{
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+    }
+    &__search{
+        width: 100%;
+        form{
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+        }
+        &--input{
+            width: 100%;
+        }
+        input{
+            padding: 5px 15px;
+        }
+        &--button{
+            width: 42px;
+            height: 38px;
+            input{
+                background-image: url('../img/ic_Search.png');
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+        }
+        input, input:focus:not(:focus-visible){
+            width: 100%;
+            height: 38px;
+            border: none;
+            outline: none;
+            box-sizing: border-box;
+        }
+    }
+}
+//breadcrumb
+
+.bread-crumb{
+    max-width: 980px;
+    display: block;
+    height: auto;
+    margin: 0 auto;
+    margin-bottom: 18px;
+    color: $gray-description-color;
+    font-size: 12px;
+}
+.resultado-app{
+    background: $gray-background;
+    padding: 18px 0;
+    min-height: calc(100vh - 92px);
+    //search results
+    .items{
+        max-width: 980px;
+        display: block;
+        height: auto;
+        margin: 0 auto;
+        background: $white-background-items;
+    }
+    .item{
+        display: block;
+        color: $gray-text-color;    
+        display: flex;
+        flex-direction: row;
+        padding: 17px 14px;
+        position: relative;
+        &:after{
+            content: "";
+            position: absolute;
+            width: calc(100% - 36px);
+            height: 2px;
+            background: $gray-border-item;
+            bottom: 0;
+            left: 18px;
+        }
+        &-img{
+            width: 180px;
+            height: 180px;
+            margin-right: 16px;
+            img{
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+        &-info{
+            width: calc(100% - 360px);
+        }
+        &-state{
+            width: 160px;
+            margin-left: 10px;
+            padding-top: 40px;
+            font-size: 11px;
+        }
+        &-price{
+            font-size: 18px;
+            margin: 20px 0 22px;
+            line-height: 18px;
+        }
+        &-free{
+            background-image: url('../img/ic_shipping.png');
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            vertical-align: bottom;
+        }
+        &-title{
+            font-size: 17px;
+        }
+    }
+    //item details
+    .content-item, .description-item{
+        padding: 33px 32px;
+        max-width: 980px;
+        background: $white-background-items;
+        margin: 0 auto;
+    }
+    .content-item{
+        display: flex;
+        flex-direction: row;
+    }
+    .product{
+        &-img{
+            width: calc(100% - 260px);
+            text-align: center;
+        }
+        &-info{
+            width: 250px;
+            margin-left: 10px;
+    
+        }
+        &-condition, &-sold{
+            font-size: 11px;
+        }
+        &-title{
+            margin:16px 0;
+        }
+        &-price{
+            font-size: 36px;
+            display: flex;
+            flex-direction: row;
+            line-height: 36px;
+        }
+        &-decimal{
+            font-size: 16px;
+            line-height: 16px;
+            margin-top: 4px;
+        }
+        &-buy{
+            width: 247px;
+            background: $blue-background-button;
+            border-radius: 4px;
+            display: block;
+            color: $white-color-button;
+            font-size: 14px;
+            text-align: center;
+            padding: 14px 0;
+            margin-top: 55px;
+        }
+        &-dTitle{
+            font-size: 21px;
+            margin-bottom: 30px;
+        }
+        &-description{
+            font-size: 12px;
+            color: $gray-description-color;
+            display: block;
+            width: 655px;
+        }
+    }
+}

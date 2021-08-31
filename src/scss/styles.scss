@@ -154,6 +154,10 @@ body, div, a, span, p, label, input {
         &-img{
             width: calc(100% - 260px);
             text-align: center;
+            img{
+                width: 100%;
+                height: 100%;
+            }
         }
         &-info{
             width: 250px;

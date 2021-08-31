@@ -1,5 +1,4 @@
-//document.getElementById('resultado').innerHTML = "ufff";
-const url = 'https://api.mercadolibre.com/sites/MLA/search?q=:';
+const url = 'http://localhost:3010/api/itemsq=';
 let myQuery = window.location.search.split("="),
     result;
 myQuery = myQuery[1];
@@ -12,45 +11,31 @@ fetch(url+myQuery, {
 }).then(res => res.json())
 .catch(error => console.error('Error:', error))
 .then(response => {
-    result = response.results;
-    if (result.length >4){
-        result= result.slice(0,4);
-    }
-    let infoItem,breadCrumb;
-    breadCrumb = response.filters[0].values[0].name+' > '+response.filters[0].values[0].path_from_root[0].name;
+    result = response.items;
+    result.length >4 ? result= result.slice(0,4) : '';
+    let infoItem=0,breadCrumb='',box='';
+    response.categories.length ? 
+        response.categories.forEach((item, index)=>{
+            index==0 ? breadCrumb = item : breadCrumb += ' > '+item;
+        }) : '';
     result.forEach((item, index) => {
         let formaty =new Intl.NumberFormat('de-DE', {
             minimumFractionDigits: 0
         }),
         free_ship='';
-        if(item.shipping.free_shipping==true){
-            free_ship = '<div class="item-free"></div>';
-        }
-        if(index==0){
-            infoItem = `
-        <a class="item" data-id="${item.id}" href="/api/items/${item.id}" target="_self">
+        item.free_shipping==true ? free_ship = '<div class="item-free"></div>' : '';
+        box =  `
+        <a class="item" data-id="${item.id}" href="/items/${item.id}" target="_self">
             <div class="item-img">
-                <img src="${item.thumbnail}" alt="${item.title}">
+                <img src="${item.picture}" alt="${item.title}">
             </div>
             <div class="item-info">
-                <div class="item-price">$ ${formaty.format(item.price)}</div>
+                <div class="item-price">$ ${formaty.format(item.price.amount)} ${free_ship}</div>
                 <div class="item-title">${item.title}</div>
             </div>
-            <div class="item-state">${item.address.state_name}</div>
+            <div class="item-state">${item.state}</div>
         </a>`;
-        }else{
-            infoItem += ` 
-            <a class="item" data-id="${item.id}" href="/api/items/${item.id}" target="_self">
-                <div class="item-img">
-                    <img src="${item.thumbnail}" alt="${item.title}">
-                </div>
-                <div class="item-info">
-                    <div class="item-price">$ ${formaty.format(item.price)} ${free_ship}</div>
-                    <div class="item-title">${item.title}</div>
-                </div>
-                <div class="item-state">${item.address.state_name}</div>
-            </a>`
-        }
+        index==0? infoItem = box : infoItem += box;
     });
     document.getElementById('items-result').innerHTML= infoItem;
     document.getElementById('bread-crumb').innerHTML= breadCrumb;
